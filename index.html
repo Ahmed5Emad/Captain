@@ -76,7 +76,7 @@ Testing & Certification
             <input
                 type="text"
                 id="contentIdInput"
-                placeholder="Enter ID (e.g., 1)"
+                placeholder="Enter ID (e.g., 5820)"
                 class="flex-grow p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm w-full sm:w-auto"
             />
             <button
@@ -135,7 +135,7 @@ Testing & Certification
             </div>
 
             <div class="mb-6">
-                <h3 class="block text-gray-700 text-sm font-semibold mb-2">1- Visual Check:</h3>
+                <h3 class="block text-gray-700 text-m font-semibold mb-2">1- Visual Check:</h3>
                 <div class="grid grid-cols-3 gap-2 text-sm font-semibold text-gray-800 bg-gray-100 p-2 rounded-t-md">
                     <div>Item</div>
                     <div class="text-center">Accepted</div>
@@ -146,11 +146,50 @@ Testing & Certification
                 </div>
             </div>
 
+            <div class="mb-6">
+                <h3 class="block text-gray-700 text-m font-semibold mb-2">2- Tests - Static Loading Test:</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white border border-gray-200 rounded-md shadow-sm">
+                        <thead>
+                            <tr class="bg-gray-100 text-gray-800 font-semibold text-sm">
+                                <th class="py-2 px-4 text-left border-b">Boom Length (M.)</th>
+                                <th class="py-2 px-4 text-left border-b">Radius (M.)</th>
+                                <th class="py-2 px-4 text-left border-b">Test Load (Ton)</th>
+                                <th class="py-2 px-4 text-left border-b">Safety Working Load (S.W.L.) (Ton)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="staticLoadingTestsBody">
+                            <!-- Data will be inserted here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="block text-gray-700 text-m font-semibold mb-2">4- The Validity:</h3>
+                <input type="text" id="reportValidity" class="disabled-input" disabled>
+            </div>
+            <div class="mb-6">
+                <h3 class="block text-gray-700 text-m font-semibold mb-2">5- Conclusion:</h3>
+                <textarea id="reportConclusion" class="disabled-input h-24 resize-none" disabled></textarea>
+            </div>
+            <div class="mb-6">
+                <h3 class="block text-gray-700 text-m font-semibold mb-2">Inspector:</h3>
+                <input type="text" id="reportInspector" class="disabled-input" disabled>
+            </div>
+
+
             <div class="mb-4 text-center">
                 <label class="block text-gray-700 text-sm font-semibold mb-2">Report Image:</label>
                 <img
                     id="reportImage"
                     src="first.jpeg"
+                    alt="Inspection Report Image"
+                    class="rounded-md shadow-sm mx-auto w-full h-auto max-h-96 object-contain border border-gray-300"
+                />
+                <img
+                    id="reportImage"
+                    src="second.jpg"
                     alt="Inspection Report Image"
                     class="rounded-md shadow-sm mx-auto w-full h-auto max-h-96 object-contain border border-gray-300"
                 />
@@ -170,30 +209,30 @@ Testing & Certification
                     <input type="text" id="reportContactEmail" class="disabled-input" disabled>
                 </div>
             </div>
-
+        </div>
 
         <!-- Initial message when no content is displayed -->
         <div id="initialMessage" class="mt-8 p-6 bg-gray-50 rounded-lg border border-gray-200 text-center text-gray-600">
-            Enter ID '1' to display the Inspection Report.
+            Enter ID '5820' to display the Inspection Report.
         </div>
     </div>
 
     <script>
         // Define your content data
         const contentData = {
-            '5820': { // Now the inspection report is under ID '1'
+            '5820': { // Now the inspection report is under ID '5820'
                 type: 'report',
                 reportNo: '5820/2025',
-                reportDate: 'January 25, 2025',
-                client: 'الشركة الكابتن لتأجير المعدات', // Al-Kaptin for Equipment Rental
-                testDatePlace: '25-01-2025 at Client site',
-                equipmentTested: 'Forklift',
-                equipmentType: 'KOMATSU',
-                equipmentNo: 'FD70-5500241',
-                capacity: '07 TON',
-                typeOfTest: 'Loading & stability test',
-                applicableRef: 'ISO 4310',
-                inspectionProc: 'Forklift\'s loading chart.',
+                reportDate: 'January 25, 2025', // Added from previous context
+                client: 'الشركة الكابتن لتأجير المعدات', // Added from previous context
+                testDatePlace: '25-01-2025 at Client site', // Added from previous context
+                equipmentTested: 'Forklift', // Added from previous context
+                equipmentType: 'KOMATSU', // Added from previous context
+                equipmentNo: 'FD70-5500241', // Added from previous context
+                capacity: '07 TON', // Added from previous context
+                typeOfTest: 'Static Loading & Stability Test', // Combined from previous and new
+                applicableRef: 'ISO 4310', // Added from previous context
+                inspectionProc: 'Forklift\'s loading chart.', // Added from previous context
                 visualCheck: [
                     { category: 'General', items: [
                         { item: 'General View', accepted: true, rejected: false },
@@ -230,14 +269,27 @@ Testing & Certification
                         { item: 'Forks', accepted: true, rejected: false },
                         { item: 'Tires', accepted: true, rejected: false },
                         { item: 'Supports', accepted: false, rejected: false }
+                    ]},
+
+                    { category: 'Equipment Condition During Test', items: [
+                        { item: 'Brakes', accepted: true, rejected: false },
+                        { item: 'Hydraulic Circuit', accepted: true, rejected: false },
+                        { item: 'Fixing supports', accepted: true, rejected: false },
+                        { item: 'Lifting Gear', accepted: true, rejected: false }
                     ]}
                 ],
-                contactTele: '01001249944',
-                contactWebsite: 'www.neat-wq.com',
-                contactEmail: 'i_bedair@hotmail.com',
-                imageUrl: '/first.jpeg',
-                fileUrl: 'https://www.africau.edu/images/default/sample.pdf', // Placeholder for a report PDF
-                fileName: 'Inspection_Report_5820_2025.pdf'
+
+                staticLoadingTests: [
+                    { boomLength: 'N/A', radius: 'N/A', testLoad: '07.00', safetyWorkingLoad: '07.00' },
+                    { boomLength: '--', radius: '--', testLoad: '02.50', safetyWorkingLoad: '03.00' },
+                    { boomLength: '--', radius: '--', testLoad: '01.50', safetyWorkingLoad: '01.50' }
+                ],
+                conclusion: 'The crane by this condition is satisfactory for lifting loads up to 100% of the rated load table, taking into consideration the wire rope condition. The crane is due for retesting on 24/07/2025 or after any major repairs, provided that the regular maintenance had took place.',
+                validity: '6 Month from the date of Inspection',
+                inspector: 'R.D.C INSPECTOR ALEX', // From the stamp
+                contactTele: '01001249944', // Added from previous context
+                contactWebsite: 'www.neat-wq.com', // Added from previous context
+                contactEmail: 'i_bedair@hotmail.com', // Added from previous context
             }
         };
 
@@ -255,11 +307,16 @@ Testing & Certification
         const reportApplicableRef = document.getElementById('reportApplicableRef');
         const reportInspectionProc = document.getElementById('reportInspectionProc');
         const visualChecksContainer = document.getElementById('visualChecksContainer');
-        const reportImage = document.getElementById('reportImage');
+        const staticLoadingTestsBody = document.getElementById('staticLoadingTestsBody'); // New element
+        const reportValidity = document.getElementById('reportValidity'); // New element
+        const reportConclusion = document.getElementById('reportConclusion'); // New element
+        const reportInspector = document.getElementById('reportInspector'); // New element
+
+
         const reportContactTele = document.getElementById('reportContactTele');
         const reportContactWebsite = document.getElementById('reportContactWebsite');
         const reportContactEmail = document.getElementById('reportContactEmail');
-        const reportFileLink = document.getElementById('reportFileLink');
+        // const reportFileLink = document.getElementById('reportFileLink'); // This element was removed in the HTML
 
         // Common elements
         const contentIdInput = document.getElementById('contentIdInput');
@@ -277,17 +334,17 @@ Testing & Certification
             if (content && content.type === 'report') {
                 contentShowcase.classList.remove('hidden');
                 reportNoDisplay.textContent = content.reportNo;
-                reportDate.value = content.reportDate;
-                reportClient.value = content.client;
-                reportTestDatePlace.value = content.testDatePlace;
-                reportEquipmentTested.value = content.equipmentTested;
-                reportEquipmentType.value = content.equipmentType;
-                reportEquipmentNo.value = content.equipmentNo;
-                reportCapacity.value = content.capacity;
-                reportTypeOfTest.value = content.typeOfTest;
-                reportApplicableRef.value = content.applicableRef;
-                reportInspectionProc.value = content.inspectionProc;
-                
+                reportDate.value = content.reportDate || 'N/A';
+                reportClient.value = content.client || 'N/A';
+                reportTestDatePlace.value = content.testDatePlace || 'N/A';
+                reportEquipmentTested.value = content.equipmentTested || 'N/A';
+                reportEquipmentType.value = content.equipmentType || 'N/A';
+                reportEquipmentNo.value = content.equipmentNo || 'N/A';
+                reportCapacity.value = content.capacity || 'N/A';
+                reportTypeOfTest.value = content.typeOfTest || 'N/A';
+                reportApplicableRef.value = content.applicableRef || 'N/A';
+                reportInspectionProc.value = content.inspectionProc || 'N/A';
+
                 // Clear previous visual checks
                 visualChecksContainer.innerHTML = '';
                 // Populate visual checks by category
@@ -318,17 +375,31 @@ Testing & Certification
                     });
                 });
 
-                reportImage.src = content.imageUrl;
-                reportImage.alt = `Inspection Report for ${content.reportNo}`;
-                reportContactTele.value = content.contactTele;
-                reportContactWebsite.value = content.contactWebsite;
-                reportContactEmail.value = content.contactEmail;
+                // Populate static loading tests
+                staticLoadingTestsBody.innerHTML = ''; // Clear previous
+                if (content.staticLoadingTests) {
+                    content.staticLoadingTests.forEach(test => {
+                        const row = document.createElement('tr');
+                        row.className = 'border-b border-gray-200';
+                        row.innerHTML = `
+                            <td class="py-2 px-4 text-sm text-gray-700">${test.boomLength}</td>
+                            <td class="py-2 px-4 text-sm text-gray-700">${test.radius}</td>
+                            <td class="py-2 px-4 text-sm text-gray-700">${test.testLoad}</td>
+                            <td class="py-2 px-4 text-sm text-gray-700">${test.safetyWorkingLoad}</td>
+                        `;
+                        staticLoadingTestsBody.appendChild(row);
+                    });
+                }
 
-                reportFileLink.href = content.fileUrl;
-                reportFileLink.download = content.fileName || `report-${id}.pdf`;
-                reportFileLink.textContent = content.fileName || 'Download Report File';
-                reportFileLink.classList.remove('opacity-50', 'cursor-not-allowed');
-                reportFileLink.onclick = null;
+                reportValidity.value = content.validity || 'N/A';
+                reportConclusion.value = content.conclusion || 'N/A';
+                reportInspector.value = content.inspector || 'N/A';
+
+                reportContactTele.value = content.contactTele || 'N/A';
+                reportContactWebsite.value = content.contactWebsite || 'N/A';
+                reportContactEmail.value = content.contactEmail || 'N/A';
+
+
             } else {
                 // If ID not found or not a report type, show initial message
                 initialMessage.classList.remove('hidden');
