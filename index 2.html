@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Showcase</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: flex-start; /* Align to top, allowing content to scroll if long */
+            min-height: 100vh;      /* Full viewport height */
+            padding: 2rem 1rem;     /* Responsive padding */
+        }
+        /* Style for disabled input fields to look like text */
+        .disabled-input {
+            background-color: #e2e8f0; /* Light gray background for disabled state */
+            color: #4a5568; /* Darker text color */
+            border: 1px solid #cbd5e0; /* Light border */
+            cursor: default; /* Default cursor */
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            width: 100%;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.05); /* Subtle inset shadow */
+        }
+        /* Custom styling for disabled checkboxes to ensure visibility */
+        .disabled-checkbox:checked {
+            background-color: #22c55e; /* green-500 */
+            border-color: #22c55e;
+        }
+        .disabled-checkbox:checked:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.5); /* green-500 with transparency */
+        }
+        .disabled-checkbox {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            display: inline-block;
+            vertical-align: middle;
+            height: 1rem;
+            width: 1rem;
+            border: 1px solid #cbd5e0; /* border-gray-300 */
+            border-radius: 0.25rem; /* rounded */
+            background-color: #e2e8f0; /* bg-gray-200 */
+            cursor: default;
+            position: relative;
+        }
+        .disabled-checkbox:checked::before {
+            content: '\2713'; /* Checkmark character */
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.75rem; /* Adjust size as needed */
+            color: white;
+        }
+        .tooltip {
+            cursor: help;
+            border-bottom: 1px dotted #4a5568;
+        }
+    </style>
+</head>
+<body>
+    
+
+    
+        <img src="LOGO.PNG" alt="logo" class=" mb-14 m-auto scale-150">
+        <div class="mb-6 flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 ">
+            <input
+                type="text"
+                id="contentIdInput"
+                placeholder="Enter The ID"
+                class="flex-grow p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm w-full sm:w-auto"
+            />
+            <button
+                id="showContentBtn"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105 w-full sm:w-auto"
+            >
+                Load Content
+            </button>
+        </div>
+
+        <!-- Inspection Report Showcase Section -->
+        <div id="contentShowcase" class="mt-8 p-6 bg-gray-50 rounded-lg border border-gray-200 hidden">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-6 border-b pb-3">Certificate of Thorough Examination: <span id="reportNoDisplay" class="text-blue-700"></span></h2>
+
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Equipment Details</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                 <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Equipment Description:</label>
+                    <input type="text" id="reportEquipmentTested" class="disabled-input" disabled>
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Manufacture / Model:</label>
+                    <input type="text" id="reportEquipmentType" class="disabled-input" disabled>
+                </div>
+                 <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Equipment ID:</label>
+                    <input type="text" id="reportEquipmentNo" class="disabled-input" disabled>
+                </div>
+                 <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Chassis No:</label>
+                    <input type="text" id="reportChassisNo" class="disabled-input" disabled>
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Capacity:</label>
+                    <input type="text" id="reportCapacity" class="disabled-input" disabled>
+                </div>
+                 <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Boom Length:</label>
+                    <input type="text" id="reportBoomLength" class="disabled-input" disabled>
+                </div>
+                 <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Hook S.N:</label>
+                    <input type="text" id="reportHookSN" class="disabled-input" disabled>
+                </div>
+                 <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Hook Capacity:</label>
+                    <input type="text" id="reportHookCap" class="disabled-input" disabled>
+                </div>
+                 <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Wire Diameter:</label>
+                    <input type="text" id="reportWireDiam" class="disabled-input" disabled>
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Date of Manufacture:</label>
+                    <input type="text" id="reportDateOfMan" class="disabled-input" disabled>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Examination Details</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Date of Thorough Examination:</label>
+                    <input type="text" id="reportDate" class="disabled-input" disabled>
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Next Thorough Examination Date:</label>
+                    <input type="text" id="endingDate" class="disabled-input" disabled>
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Client:</label>
+                    <input type="text" id="reportClient" class="disabled-input" disabled>
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Place of Examination:</label>
+                    <input type="text" id="reportTestDatePlace" class="disabled-input" disabled>
+                </div>
+                 <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Date of Last Examination:</label>
+                    <input type="text" id="reportLastExam" class="disabled-input" disabled>
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Applicable Regulations:</label>
+                    <input type="text" id="reportApplicableRef" class="disabled-input" disabled>
+                </div>
+            </div>
+            
+            <div class="mb-6 p-4 bg-gray-100 rounded-lg">
+                <h4 class="font-semibold text-gray-800 mb-3">Examination Circumstances:</h4>
+                <div id="examCircumstances" class="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2 text-sm">
+                    <!-- This will be populated by JS -->
+                </div>
+            </div>
+
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Safe Working Load</h3>
+            <div class="mb-6">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white border border-gray-200 rounded-md shadow-sm">
+                        <thead>
+                            <tr class="bg-gray-100 text-gray-800 font-semibold text-sm">
+                                <th class="py-2 px-4 text-left border-b">Boom Length (M.)</th>
+                                <th class="py-2 px-4 text-left border-b">Radius (M.)</th>
+                                <th class="py-2 px-4 text-left border-b">Safe Work Load (Ton)</th>
+                                <th class="py-2 px-4 text-left border-b">S.W.L.</th>
+                            </tr>
+                        </thead>
+                        <tbody id="staticLoadingTestsBody">
+                        </tbody>
+                    </table>
+                     <div class="text-xs text-gray-600 mt-2 p-2 bg-gray-100 rounded-md" id="swlNote"></div>
+                </div>
+            </div>
+            
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Inspection Checklist</h3>
+            <div class="mb-6">
+                 <div class="grid grid-cols-3 gap-2 text-sm font-semibold text-gray-800 bg-gray-100 p-2 rounded-t-md">
+                    <div>Critical Point</div>
+                    <div class="text-center">Condition</div>
+                    <div class="text-center">Defect Affects Safety?</div>
+                </div>
+                <div id="visualChecksContainer" class="border border-gray-200 rounded-b-md">
+                </div>
+                 <div class="mt-4">
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Remarks:</label>
+                    <input type="text" id="reportRemarks" class="disabled-input" disabled>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Findings and Conclusion</h3>
+             <div class="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Defects which are or could become a danger:</label>
+                    <input type="text" id="reportDefects" class="disabled-input" disabled>
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Repairs, renewals, or alterations required:</label>
+                    <input type="text" id="reportRepairs" class="disabled-input" disabled>
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Particulars of any tests carried out:</label>
+                    <input type="text" id="reportTestsCarriedOut" class="disabled-input" disabled>
+                </div>
+            </div>
+
+             <div class="mb-6">
+                 <label class="block text-gray-700 text-sm font-semibold mb-1">Is this equipment safe to operate?</label>
+                 <div id="safeToOperate" class="p-3 text-center font-bold rounded-md"></div>
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-semibold mb-1">Conclusion:</label>
+                <textarea id="reportConclusion" class="disabled-input h-24 resize-none" disabled></textarea>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Person making this report:</label>
+                    <input type="text" id="reportInspector" class="disabled-input" disabled>
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Person authenticating this report:</label>
+                    <input type="text" id="reportAuthenticator" class="disabled-input" disabled>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 pt-4 border-t">
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Telephone:</label>
+                    <input type="text" id="reportContactTele" class="disabled-input" disabled>
+                </div>
+                 <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Website:</label>
+                    <input type="text" class="disabled-input" value="www.horizonlloyd.com" disabled>
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Email:</label>
+                    <input type="text" class="disabled-input" value="info@horizonlloyd.com" disabled>
+                </div>
+            </div>
+             <div class="text-center text-xs text-gray-500">
+                International Form of Certificate Approved By: LOLER 1998, PUWER Regulations 1998
+             </div>
+        </div>
+
+        <!-- Initial message when no content is displayed -->
+        <div id="initialMessage" class="mt-8 p-6 bg-gray-50 rounded-lg border border-gray-200 text-center text-gray-600">
+            Enter an ID to display the Inspection Report.
+        </div>
+    </div>
+
+    <script>
+        const contentData = {
+            '0004724': { 
+                type: 'report',
+                reportNo: 'HL-0004724-2025',
+                reportDate: '27-07-2025',
+                endingDate: '26-01-2026',
+                client: 'PETROBLAST',
+                testDatePlace: 'CLIENT LOCATION',
+                equipmentTested: 'MOBILE TELESCOPIC CRANE',
+                equipmentType: 'GROVE / GMK3050',
+                equipmentNo: '0508431',
+                chassisNo: 'W09050380YWG12431',
+                capacity: '50 TON',
+                boomLength: '38.1 M',
+                hookSN: '15401',
+                hookCap: '28 TON (5 SHEAVES) 2 FALLS',
+                wireDiam: '19 MM',
+                dateOfMan: 'N/A',
+                lastExam: '2025',
+                applicableRef: 'Lifting Operations and Lifting Equipment Regulations 1998',
+                examStatus: {
+                    firstAfterInstall: false,
+                    within6Months: true,
+                    within12Months: false,
+                    inAccordance: true,
+                    afterExceptional: false,
+                    installedCorrectly: true
+                },
+                checklist: [
+                    { item: 'CERTIFICATION', desc: 'Is certification available for Wire Ropes, Hook Blocks, Slings, Shackles and other replaceable items.', condition: 'GOOD', defect: false },
+                    { item: 'GENERAL CONDITION', desc: 'General report on condition of the crane, considering paintwork, oil spillage, cleanliness, identification, etc.', condition: 'GOOD', defect: false },
+                    { item: 'WIRE ROPES', desc: 'Are the wire ropes in good condition, free from kinks, wear, or defects? If so, state defect, wire, and location.', condition: 'GOOD', defect: false },
+                    { item: 'BOOM and TELESCOPE', desc: 'Check condition of boom sections, wear pads, linkages, and pins. Check for unusual sounds from telescope cylinder(s) and signs of yielding (drifting) under load.', condition: 'GOOD', defect: false },
+                    { item: 'MAIN and AUX, HOIST WINCHES', desc: 'Check condition of winches, winch drums for cracks, bearings, and proper operation of brakes and controls. Check that wire rope is spooled correctly.', condition: 'GOOD', defect: false },
+                    { item: 'BOOM HOIST CYLINDERS', desc: 'Check condition of Boom Hoist cylinder(s) and ram for defects or scoring. Listen for unusual sounds and check for yielding (drifting).', condition: 'GOOD', defect: false },
+                    { item: 'HOOK BLOCKS', desc: 'Check for correct reeving, condition of sheaves, cheek plates, bearings, pins, and lubrication. Is the hook block(s) correctly marked as to its SWL?', condition: 'GOOD', defect: false },
+                    { item: 'SLEW MOTION', desc: 'Check operation of slew or swing motion, drive motor(s), and reduction gear(s). Listen for unusual sounds.', condition: 'GOOD', defect: false },
+                    { item: 'OUTRIGGERS', desc: 'Check for structural integrity, condition of weldments and/or bolted fixings, hydraulic or electrical systems, and proper operation.', condition: 'GOOD', defect: false },
+                    { item: 'OPERATORS CAB(s) and CONTROLS', desc: 'Check condition of operators cab(s), controls, and communication equipment. Note if a load radius chart is available.', condition: 'GOOD', defect: false },
+                    { item: 'STRUCTURE', desc: 'Check for structural integrity, condition of weldments and/or bolted fixings.', condition: 'GOOD', defect: false },
+                    { item: 'SAFETY DEVICES and LIMIT SWITCHES', desc: 'Check operation of boom angle, length or radius indicator. Check operation of all limit switches.', condition: 'GOOD', defect: false }
+                ],
+                remarks: 'NONE',
+                staticLoadingTests: [
+                    { boomLength: '38.1', radius: '22', testLoad: '@10.5 TON C.W', safetyWorkingLoad: '28.00 Tone DUE TO HOOK CAPACITY' }
+                ],
+                swlNote: 'The safe working load is for a variable operating radius (including a crane with a derricking jib or any other interchangeable jibs of different lengths) the safe working.',
+                defects: 'NONE',
+                repairs: 'NONE',
+                testsCarriedOut: 'The validity of this certificate is 6 months from inspection date.',
+                safeToOperate: true,
+                conclusion: 'This is to certify that the undersigned a competent inspector did attend the above mentioned owners establishment or the designated site and the items described in this report were thoroughly examined as far as possible and the above particulars were correct at the time of Inspection.',
+                inspector: 'MOHAMED AHMED',
+                authenticator: 'HASSAN SOBHY',
+                contactTele: '01001249944'
+            },
+            '0004723': { 
+                type: 'report',
+                reportNo: 'HL-0004723-2025',
+                reportDate: '27-07-2025',
+                endingDate: '26-01-2026',
+                client: 'PETROBLAST',
+                testDatePlace: 'CLIENT LOCATION',
+                equipmentTested: 'MOBILE TELESCOPIC CRANE',
+                equipmentType: 'GROVE / GMK3050',
+                equipmentNo: '0508730',
+                chassisNo: 'W090503802WG12730',
+                capacity: '50 TON',
+                boomLength: '38.1 M',
+                hookSN: '15401',
+                hookCap: '28 TON (5 SHEAVES) 2 FALLS',
+                wireDiam: '19 MM',
+                dateOfMan: 'N/A',
+                lastExam: '2025',
+                applicableRef: 'Lifting Operations and Lifting Equipment Regulations 1998',
+                 examStatus: {
+                    firstAfterInstall: false,
+                    within6Months: true,
+                    within12Months: false,
+                    inAccordance: true,
+                    afterExceptional: false,
+                    installedCorrectly: true
+                },
+                 checklist: [
+                    { item: 'CERTIFICATION', desc: 'Is certification available for Wire Ropes, Hook Blocks, Slings, Shackles and other replaceable items.', condition: 'GOOD', defect: false },
+                    { item: 'GENERAL CONDITION', desc: 'General report on condition of the crane, considering paintwork, oil spillage, cleanliness, identification, etc.', condition: 'GOOD', defect: false },
+                    { item: 'WIRE ROPES', desc: 'Are the wire ropes in good condition, free from kinks, wear, or defects? If so, state defect, wire, and location.', condition: 'GOOD', defect: false },
+                    { item: 'BOOM and TELESCOPE', desc: 'Check condition of boom sections, wear pads, linkages, and pins. Check for unusual sounds from telescope cylinder(s) and signs of yielding (drifting) under load.', condition: 'GOOD', defect: false },
+                    { item: 'MAIN and AUX, HOIST WINCHES', desc: 'Check condition of winches, winch drums for cracks, bearings, and proper operation of brakes and controls. Check that wire rope is spooled correctly.', condition: 'GOOD', defect: false },
+                    { item: 'BOOM HOIST CYLINDERS', desc: 'Check condition of Boom Hoist cylinder(s) and ram for defects or scoring. Listen for unusual sounds and check for yielding (drifting).', condition: 'GOOD', defect: false },
+                    { item: 'HOOK BLOCKS', desc: 'Check for correct reeving, condition of sheaves, cheek plates, bearings, pins, and lubrication. Is the hook block(s) correctly marked as to its SWL?', condition: 'GOOD', defect: false },
+                    { item: 'SLEW MOTION', desc: 'Check operation of slew or swing motion, drive motor(s), and reduction gear(s). Listen for unusual sounds.', condition: 'GOOD', defect: false },
+                    { item: 'OUTRIGGERS', desc: 'Check for structural integrity, condition of weldments and/or bolted fixings, hydraulic or electrical systems, and proper operation.', condition: 'GOOD', defect: false },
+                    { item: 'OPERATORS CAB(s) and CONTROLS', desc: 'Check condition of operators cab(s), controls, and communication equipment. Note if a load radius chart is available.', condition: 'GOOD', defect: false },
+                    { item: 'STRUCTURE', desc: 'Check for structural integrity, condition of weldments and/or bolted fixings.', condition: 'GOOD', defect: false },
+                    { item: 'SAFETY DEVICES and LIMIT SWITCHES', desc: 'Check operation of boom angle, length or radius indicator. Check operation of all limit switches.', condition: 'GOOD', defect: false }
+                ],
+                remarks: 'NONE',
+                staticLoadingTests: [
+                    { boomLength: '38.1', radius: '22', testLoad: '@10.5 TON C.W', safetyWorkingLoad: '28.00 Tone DUE TO HOOK CAPACITY' }
+                ],
+                swlNote: 'The safe working load is for a variable operating radius (including a crane with a derricking jib or any other interchangeable jibs of different lengths) the safe working.',
+                defects: 'NONE',
+                repairs: 'NONE',
+                testsCarriedOut: 'The validity of this certificate is 6 months from inspection date.',
+                safeToOperate: true,
+                conclusion: 'This is to certify that the undersigned a competent inspector did attend the above mentioned owners establishment or the designated site and the items described in this report were thoroughly examined as far as possible and the above particulars were correct at the time of Inspection.',
+                inspector: 'MOHAMED AHMED',
+                authenticator: 'HASSAN SOBHY',
+                contactTele: '01001249944'
+            }
+        };
+
+        const contentShowcase = document.getElementById('contentShowcase');
+        const contentIdInput = document.getElementById('contentIdInput');
+        const showContentBtn = document.getElementById('showContentBtn');
+        const initialMessage = document.getElementById('initialMessage');
+
+        // Get all DOM elements for report fields
+        const reportNoDisplay = document.getElementById('reportNoDisplay');
+        const reportDate = document.getElementById('reportDate');
+        const endingDate = document.getElementById('endingDate');
+        const reportClient = document.getElementById('reportClient');
+        const reportTestDatePlace = document.getElementById('reportTestDatePlace');
+        const reportEquipmentTested = document.getElementById('reportEquipmentTested');
+        const reportEquipmentType = document.getElementById('reportEquipmentType');
+        const reportEquipmentNo = document.getElementById('reportEquipmentNo');
+        const reportChassisNo = document.getElementById('reportChassisNo');
+        const reportCapacity = document.getElementById('reportCapacity');
+        const reportBoomLength = document.getElementById('reportBoomLength');
+        const reportHookSN = document.getElementById('reportHookSN');
+        const reportHookCap = document.getElementById('reportHookCap');
+        const reportWireDiam = document.getElementById('reportWireDiam');
+        const reportDateOfMan = document.getElementById('reportDateOfMan');
+        const reportLastExam = document.getElementById('reportLastExam');
+        const reportApplicableRef = document.getElementById('reportApplicableRef');
+        const examCircumstances = document.getElementById('examCircumstances');
+        const visualChecksContainer = document.getElementById('visualChecksContainer');
+        const staticLoadingTestsBody = document.getElementById('staticLoadingTestsBody');
+        const swlNote = document.getElementById('swlNote');
+        const reportRemarks = document.getElementById('reportRemarks');
+        const reportDefects = document.getElementById('reportDefects');
+        const reportRepairs = document.getElementById('reportRepairs');
+        const reportTestsCarriedOut = document.getElementById('reportTestsCarriedOut');
+        const safeToOperate = document.getElementById('safeToOperate');
+        const reportConclusion = document.getElementById('reportConclusion');
+        const reportInspector = document.getElementById('reportInspector');
+        const reportAuthenticator = document.getElementById('reportAuthenticator');
+        const reportContactTele = document.getElementById('reportContactTele');
+
+
+        function populateChecklist(container, checklist) {
+            container.innerHTML = '';
+            if (!checklist || checklist.length === 0) return;
+
+            checklist.forEach((check, index) => {
+                const checkItemDiv = document.createElement('div');
+                checkItemDiv.className = 'grid grid-cols-3 items-center gap-2 py-2 border-b border-gray-200 last:border-b-0 px-2';
+                checkItemDiv.innerHTML = `
+                    <div class="col-span-1 text-gray-700 font-normal text-sm tooltip" title="${check.desc}">${check.item}</div>
+                    <div class="text-center text-sm font-semibold text-green-600">${check.condition}</div>
+                    <div class="flex items-center justify-center space-x-2">
+                        <input type="checkbox" id="defect-${index}" class="disabled-checkbox" ${check.defect ? 'checked' : ''} disabled>
+                        <label for="defect-${index}" class="text-gray-600 text-sm sr-only">Defect</label>
+                    </div>
+                `;
+                container.appendChild(checkItemDiv);
+            });
+        }
+        
+        function populateExamCircumstances(container, statuses) {
+            container.innerHTML = '';
+            const statusMap = [
+                { key: 'firstAfterInstall', label: 'First use after installation?' },
+                { key: 'installedCorrectly', label: 'If so, installed correctly?' },
+                { key: 'within6Months', label: 'Within an interval of 6 months?' },
+                { key: 'within12Months', label: 'Within an interval of 12 months?' },
+                { key: 'inAccordance', label: 'In accordance with examination scheme?' },
+                { key: 'afterExceptional', label: 'After exceptional circumstances?' }
+            ];
+            
+            statusMap.forEach(s => {
+                const isChecked = statuses[s.key];
+                const statusDiv = document.createElement('div');
+                statusDiv.className = 'flex items-center space-x-2';
+                statusDiv.innerHTML = `
+                    <input type="checkbox" id="status-${s.key}" class="disabled-checkbox" ${isChecked ? 'checked' : ''} disabled>
+                    <label for="status-${s.key}" class="text-gray-700">${s.label}</label>
+                `;
+                container.appendChild(statusDiv);
+            });
+        }
+
+        function updateContentDisplay(id) {
+            const content = contentData[id];
+
+            contentShowcase.classList.add('hidden');
+            initialMessage.classList.add('hidden');
+
+            if (content && content.type === 'report') {
+                contentShowcase.classList.remove('hidden');
+                
+                // Populate all fields
+                reportNoDisplay.textContent = content.reportNo;
+                reportDate.value = content.reportDate || 'N/A';
+                endingDate.value = content.endingDate || 'N/A';
+                reportClient.value = content.client || 'N/A';
+                reportTestDatePlace.value = content.testDatePlace || 'N/A';
+                reportEquipmentTested.value = content.equipmentTested || 'N/A';
+                reportEquipmentType.value = content.equipmentType || 'N/A';
+                reportEquipmentNo.value = content.equipmentNo || 'N/A';
+                reportChassisNo.value = content.chassisNo || 'N/A';
+                reportCapacity.value = content.capacity || 'N/A';
+                reportBoomLength.value = content.boomLength || 'N/A';
+                reportHookSN.value = content.hookSN || 'N/A';
+                reportHookCap.value = content.hookCap || 'N/A';
+                reportWireDiam.value = content.wireDiam || 'N/A';
+                reportDateOfMan.value = content.dateOfMan || 'N/A';
+                reportLastExam.value = content.lastExam || 'N/A';
+                reportApplicableRef.value = content.applicableRef || 'N/A';
+                reportRemarks.value = content.remarks || 'N/A';
+                reportDefects.textContent = content.defects || 'N/A';
+                reportRepairs.textContent = content.repairs || 'N/A';
+                reportTestsCarriedOut.value = content.testsCarriedOut || 'N/A';
+                reportConclusion.value = content.conclusion || 'N/A';
+                reportInspector.value = content.inspector || 'N/A';
+                reportAuthenticator.value = content.authenticator || 'N/A';
+                reportContactTele.value = content.contactTele || 'N/A';
+                swlNote.textContent = content.swlNote || '';
+                
+                // Safe to operate status
+                if(content.safeToOperate) {
+                    safeToOperate.textContent = 'YES';
+                    safeToOperate.className = 'p-3 text-center font-bold rounded-md bg-green-200 text-green-800';
+                } else {
+                    safeToOperate.textContent = 'NO';
+                    safeToOperate.className = 'p-3 text-center font-bold rounded-md bg-red-200 text-red-800';
+                }
+
+                populateExamCircumstances(examCircumstances, content.examStatus);
+                populateChecklist(visualChecksContainer, content.checklist || []);
+
+                staticLoadingTestsBody.innerHTML = '';
+                if (content.staticLoadingTests) {
+                    content.staticLoadingTests.forEach(test => {
+                        const row = document.createElement('tr');
+                        row.className = 'border-b border-gray-200';
+                        row.innerHTML = `
+                            <td class="py-2 px-4 text-sm text-gray-700">${test.boomLength}</td>
+                            <td class="py-2 px-4 text-sm text-gray-700">${test.radius}</td>
+                            <td class="py-2 px-4 text-sm text-gray-700">${test.testLoad}</td>
+                            <td class="py-2 px-4 text-sm text-gray-700">${test.safetyWorkingLoad}</td>
+                        `;
+                        staticLoadingTestsBody.appendChild(row);
+                    });
+                }
+
+            } else {
+                initialMessage.classList.remove('hidden');
+            }
+        }
+
+        showContentBtn.addEventListener('click', () => {
+            const enteredId = contentIdInput.value.trim();
+            updateContentDisplay(enteredId);
+        });
+
+        contentIdInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                showContentBtn.click();
+            }
+        });
+
+        initialMessage.classList.remove('hidden');
+    </script>
+</body>
+</html>
