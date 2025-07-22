@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Regional Development Center Testing & Certification</title>
+    <title>Content Showcase</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
     <style>
+        
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f3f4f6; /* Light gray background */
@@ -66,17 +68,17 @@
 </head>
 <body>
 
-    <div class="bg-white p-8 rounded-lg shadow-xl max-w-4xl w-full border border-gray-200">
-        <h1 class="text-3xl font-bold text-gray-800 mb-3 text-center">R.D.C</h1>
-        <h2 class="text-center font-bold mb-3">
+    <div class="bg-white p-8 rounded-lg shadow-xl max-w-4xl w-full border border-gray-200 ">
+        <h1 class="text-3xl font-bold text-gray-800 mb-3 text-center ">R.D.C</h1>
+        <h2 class="text-center font-bold">
 Regional Development Center
 Testing & Certification
         </h2>
-        <div class="mb-6 flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
+        <div class="mb-6 flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 ">
             <input
                 type="text"
                 id="contentIdInput"
-                placeholder="Enter ID (e.g., 5820)"
+                placeholder="Enter The ID"
                 class="flex-grow p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm w-full sm:w-auto"
             />
             <button
@@ -95,6 +97,10 @@ Testing & Certification
                 <div>
                     <label class="block text-gray-700 text-sm font-semibold mb-1">Report Date:</label>
                     <input type="text" id="reportDate" class="disabled-input" disabled>
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Ending Date:</label>
+                    <input type="text" id="endingDate" class="disabled-input" disabled>
                 </div>
                 <div>
                     <label class="block text-gray-700 text-sm font-semibold mb-1">Client:</label>
@@ -164,6 +170,18 @@ Testing & Certification
                     </table>
                 </div>
             </div>
+            
+            <div class="mb-6">
+                <h3 class="block text-gray-700 text-m font-semibold mb-2">3- Equipment Condition During Test:</h3>
+                <div class="grid grid-cols-3 gap-2 text-sm font-semibold text-gray-800 bg-gray-100 p-2 rounded-t-md">
+                    <div>Item</div>
+                    <div class="text-center">Accepted</div>
+                    <div class="text-center">Rejected</div>
+                </div>
+                <div id="equipmentConditionContainer" class="border border-gray-200 rounded-b-md">
+                    <!-- Equipment condition items will be appended here by JS -->
+                </div>
+            </div>
 
             <div class="mb-6">
                 <h3 class="block text-gray-700 text-m font-semibold mb-2">4- The Validity:</h3>
@@ -176,23 +194,6 @@ Testing & Certification
             <div class="mb-6">
                 <h3 class="block text-gray-700 text-m font-semibold mb-2">Inspector:</h3>
                 <input type="text" id="reportInspector" class="disabled-input" disabled>
-            </div>
-
-
-            <div class="mb-4 text-center">
-                <label class="block text-gray-700 text-sm font-semibold mb-2">Report Image:</label>
-                <img
-                    id="reportImage"
-                    src="first.jpeg"
-                    alt="Inspection Report Image"
-                    class="rounded-md shadow-sm mx-auto w-full h-auto max-h-96 object-contain border border-gray-300"
-                />
-                <img
-                    id="reportImage"
-                    src="second.jpg"
-                    alt="Inspection Report Image"
-                    class="rounded-md shadow-sm mx-auto w-full h-auto max-h-96 object-contain border border-gray-300"
-                />
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -213,26 +214,27 @@ Testing & Certification
 
         <!-- Initial message when no content is displayed -->
         <div id="initialMessage" class="mt-8 p-6 bg-gray-50 rounded-lg border border-gray-200 text-center text-gray-600">
-            Enter ID '5820' to display the Inspection Report.
+            Enter ID to display the Inspection Report.
         </div>
     </div>
 
     <script>
         // Define your content data
         const contentData = {
-            '5820': { // Now the inspection report is under ID '5820'
+            '4432': { 
                 type: 'report',
-                reportNo: '5820/2025',
-                reportDate: 'January 25, 2025', // Added from previous context
-                client: 'الشركة الكابتن لتأجير المعدات', // Added from previous context
-                testDatePlace: '25-01-2025 at Client site', // Added from previous context
-                equipmentTested: 'Forklift', // Added from previous context
-                equipmentType: 'KOMATSU', // Added from previous context
-                equipmentNo: 'FD70-5500241', // Added from previous context
-                capacity: '07 TON', // Added from previous context
-                typeOfTest: 'Static Loading & Stability Test', // Combined from previous and new
-                applicableRef: 'ISO 4310', // Added from previous context
-                inspectionProc: 'Forklift\'s loading chart.', // Added from previous context
+                reportNo: '4432/2025',
+                reportDate: 'July 23, 2025',
+                endingDate: 'January 22, 2026',
+                client: 'الشركة الكابتن لتأجير المعدات',
+                testDatePlace: '23-07-2025 at Client site',
+                equipmentTested: 'Forklift',
+                equipmentType: 'Kalmar',
+                equipmentNo: 'T 34108.0138',
+                capacity: '32 TON',
+                typeOfTest: 'Loading & stability test',
+                applicableRef: 'ISO 4310',
+                inspectionProc: 'Forklift\'s loading chart.',
                 visualCheck: [
                     { category: 'General', items: [
                         { item: 'General View', accepted: true, rejected: false },
@@ -246,7 +248,8 @@ Testing & Certification
                     ]},
                     { category: 'Brakes', items: [
                         { item: 'Traveling', accepted: true, rejected: false },
-                        { item: 'Loading', accepted: true, rejected: false }
+                        { item: 'Loading', accepted: true, rejected: false },
+                        { item: 'Hand Brakes', accepted: true, rejected: false }
                     ]},
                     { category: 'Hydraulic System', items: [
                         { item: 'Hydraulic System', accepted: true, rejected: false }
@@ -254,7 +257,7 @@ Testing & Certification
                     { category: 'Structure', items: [
                         { item: 'Structure', accepted: true, rejected: false }
                     ]},
-                    { category: 'Control System / Cabin', items: [
+                    { category: 'Control system / Cabin', items: [
                         { item: 'Control system / cabin', accepted: true, rejected: false }
                     ]},
                     { category: 'Alarm Device', items: [
@@ -265,38 +268,605 @@ Testing & Certification
                         { item: 'Loading', accepted: true, rejected: false }
                     ]},
                     { category: 'Other', items: [
-                        { item: 'Wire ropes', accepted: false, rejected: false },
+                        { item: 'Wire ropes', accepted: false, rejected: false }, // Unchecked
                         { item: 'Forks', accepted: true, rejected: false },
                         { item: 'Tires', accepted: true, rejected: false },
-                        { item: 'Supports', accepted: false, rejected: false }
-                    ]},
-
-                    { category: 'Equipment Condition During Test', items: [
-                        { item: 'Brakes', accepted: true, rejected: false },
-                        { item: 'Hydraulic Circuit', accepted: true, rejected: false },
-                        { item: 'Fixing supports', accepted: true, rejected: false },
-                        { item: 'Lifting Gear', accepted: true, rejected: false }
+                        { item: 'Supports', accepted: false, rejected: false } // Unchecked
                     ]}
                 ],
-
+                equipmentConditionDuringTest: [
+                    { item: 'Brakes', accepted: true, rejected: false },
+                    { item: 'Hydraulic Circuit', accepted: true, rejected: false },
+                    { item: 'Fixing supports', accepted: true, rejected: false },
+                    { item: 'Lifting Gear', accepted: true, rejected: false }
+                ],
                 staticLoadingTests: [
-                    { boomLength: 'N/A', radius: 'N/A', testLoad: '07.00', safetyWorkingLoad: '07.00' },
+                    { boomLength: 'N/A', radius: 'N/A', testLoad: 'N/A', safetyWorkingLoad: '32.00' },
                     { boomLength: '--', radius: '--', testLoad: '02.50', safetyWorkingLoad: '03.00' },
                     { boomLength: '--', radius: '--', testLoad: '01.50', safetyWorkingLoad: '01.50' }
                 ],
-                conclusion: 'The crane by this condition is satisfactory for lifting loads up to 100% of the rated load table, taking into consideration the wire rope condition. The crane is due for retesting on 24/07/2025 or after any major repairs, provided that the regular maintenance had took place.',
+                conclusion: 'The crane by this condition is satisfactory for lifting loads up to 100% of the rated load table, taking into consideration the wire rope condition. The crane is due for retesting on 22/01/2026 or after any major repairs, provided that the regular maintenance had took place.',
                 validity: '6 Month from the date of Inspection',
-                inspector: 'R.D.C INSPECTOR ALEX', // From the stamp
-                contactTele: '01001249944', // Added from previous context
-                contactWebsite: 'www.neat-wq.com', // Added from previous context
-                contactEmail: 'i_bedair@hotmail.com', // Added from previous context
+                inspector: 'R.D.C INSPECTOR ALEX',
+                contactTele: '01001249944',
+                contactWebsite: 'www.neat-wq.com',
+                contactEmail: 'i_bedair@hotmail.com',
+            },
+            '4434': { 
+                type: 'report',
+                reportNo: '4434/2025',
+                reportDate: 'July 23, 2025',
+                endingDate: 'January 22, 2026',
+                client: 'الشركة الكابتن لتأجير المعدات',
+                testDatePlace: '23-07-2025 at Client site',
+                equipmentTested: 'Forklift',
+                equipmentType: 'Kalmar',
+                equipmentNo: 'T 34108.0266',
+                capacity: '25 TON',
+                typeOfTest: 'Loading & stability test',
+                applicableRef: 'ISO 4310',
+                inspectionProc: 'Forklift\'s loading chart.',
+                visualCheck: [
+                    { category: 'General', items: [
+                        { item: 'General View', accepted: true, rejected: false },
+                        { item: 'Safety Utensils', accepted: true, rejected: false },
+                        { item: 'Hook/Forks', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Lighting', items: [
+                        { item: 'Front', accepted: true, rejected: false },
+                        { item: 'Rear', accepted: true, rejected: false },
+                        { item: 'Signaling', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Brakes', items: [
+                        { item: 'Traveling', accepted: true, rejected: false },
+                        { item: 'Loading', accepted: true, rejected: false },
+                        { item: 'Hand Brakes', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Hydraulic System', items: [
+                        { item: 'Hydraulic System', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Structure', items: [
+                        { item: 'Structure', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Control system / Cabin', items: [
+                        { item: 'Control system / cabin', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Alarm Device', items: [
+                        { item: 'Alarm device', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Engine', items: [
+                        { item: 'Traveling', accepted: true, rejected: false },
+                        { item: 'Loading', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Other', items: [
+                        { item: 'Wire ropes', accepted: false, rejected: false }, // Unchecked
+                        { item: 'Forks', accepted: true, rejected: false },
+                        { item: 'Tires', accepted: true, rejected: false },
+                        { item: 'Supports', accepted: false, rejected: false } // Unchecked
+                    ]}
+                ],
+                equipmentConditionDuringTest: [
+                    { item: 'Brakes', accepted: true, rejected: false },
+                    { item: 'Hydraulic Circuit', accepted: true, rejected: false },
+                    { item: 'Fixing supports', accepted: true, rejected: false },
+                    { item: 'Lifting Gear', accepted: true, rejected: false }
+                ],
+                staticLoadingTests: [
+                    { boomLength: 'N/A', radius: 'N/A', testLoad: 'N/A', safetyWorkingLoad: '25.00' },
+                    { boomLength: '--', radius: '--', testLoad: '02.50', safetyWorkingLoad: '03.00' },
+                    { boomLength: '--', radius: '--', testLoad: '01.50', safetyWorkingLoad: '01.50' }
+                ],
+                conclusion: 'The crane by this condition is satisfactory for lifting loads up to 100% of the rated load table, taking into consideration the wire rope condition. The crane is due for retesting on 22/01/2026 or after any major repairs, provided that the regular maintenance had took place.',
+                validity: '6 Month from the date of Inspection',
+                inspector: 'R.D.C INSPECTOR ALEX',
+                contactTele: '01001249944',
+                contactWebsite: 'www.neat-wq.com',
+                contactEmail: 'i_bedair@hotmail.com',
+            },
+            '4453': { 
+                type: 'report',
+                reportNo: '4453/2025',
+                reportDate: 'July 23, 2025',
+                endingDate: 'January 22, 2026',
+                client: 'الشركة الكابتن لتأجير المعدات',
+                testDatePlace: '23-07-2025 at Client site',
+                equipmentTested: 'Forklift',
+                equipmentType: 'Kalmar',
+                equipmentNo: 'T 34108.0138',
+                capacity: '35 TON',
+                typeOfTest: 'Loading & stability test',
+                applicableRef: 'ISO 4310',
+                inspectionProc: 'Forklift\'s loading chart.',
+                visualCheck: [
+                    { category: 'General', items: [
+                        { item: 'General View', accepted: true, rejected: false },
+                        { item: 'Safety Utensils', accepted: true, rejected: false },
+                        { item: 'Hook/Forks', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Lighting', items: [
+                        { item: 'Front', accepted: true, rejected: false },
+                        { item: 'Rear', accepted: true, rejected: false },
+                        { item: 'Signaling', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Brakes', items: [
+                        { item: 'Traveling', accepted: true, rejected: false },
+                        { item: 'Loading', accepted: true, rejected: false },
+                        { item: 'Hand Brakes', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Hydraulic System', items: [
+                        { item: 'Hydraulic System', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Structure', items: [
+                        { item: 'Structure', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Control system / Cabin', items: [
+                        { item: 'Control system / cabin', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Alarm Device', items: [
+                        { item: 'Alarm device', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Engine', items: [
+                        { item: 'Traveling', accepted: true, rejected: false },
+                        { item: 'Loading', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Other', items: [
+                        { item: 'Wire ropes', accepted: false, rejected: false }, // Unchecked
+                        { item: 'Forks', accepted: true, rejected: false },
+                        { item: 'Tires', accepted: true, rejected: false },
+                        { item: 'Supports', accepted: false, rejected: false } // Unchecked
+                    ]}
+                ],
+                equipmentConditionDuringTest: [
+                    { item: 'Brakes', accepted: true, rejected: false },
+                    { item: 'Hydraulic Circuit', accepted: true, rejected: false },
+                    { item: 'Fixing supports', accepted: true, rejected: false },
+                    { item: 'Lifting Gear', accepted: true, rejected: false }
+                ],
+                staticLoadingTests: [
+                    { boomLength: 'N/A', radius: 'N/A', testLoad: 'N/A', safetyWorkingLoad: '35.00' },
+                    { boomLength: '--', radius: '--', testLoad: '02.50', safetyWorkingLoad: '03.00' },
+                    { boomLength: '--', radius: '--', testLoad: '01.50', safetyWorkingLoad: '01.50' }
+                ],
+                conclusion: 'The crane by this condition is satisfactory for lifting loads up to 100% of the rated load table, taking into consideration the wire rope condition. The crane is due for retesting on 22/01/2026 or after any major repairs, provided that the regular maintenance had took place.',
+                validity: '6 Month from the date of Inspection',
+                inspector: 'R.D.C INSPECTOR ALEX',
+                contactTele: '01001249944',
+                contactWebsite: 'www.neat-wq.com',
+                contactEmail: 'i_bedair@hotmail.com',
+            },
+            '5828': {
+                type: 'report',
+                reportNo: '5828/2025',
+                reportDate: 'July 23, 2025',
+                endingDate: 'January 22, 2026',
+                client: 'الشركة الكابتن لتأجير المعدات',
+                testDatePlace: '23-07-2025 at Client site',
+                equipmentTested: 'Forklift',
+                equipmentType: 'TCM',
+                equipmentNo: 'FHG25C3-2E400132',
+                capacity: '2.5 TON',
+                typeOfTest: 'Loading & stability test',
+                applicableRef: 'ISO 4310',
+                inspectionProc: 'Forklift\'s loading chart.',
+                visualCheck: [
+                    { category: 'General', items: [
+                        { item: 'General View', accepted: true, rejected: false },
+                        { item: 'Safety Utensils', accepted: true, rejected: false },
+                        { item: 'Hook/Forks', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Lighting', items: [
+                        { item: 'Front', accepted: true, rejected: false },
+                        { item: 'Rear', accepted: true, rejected: false },
+                        { item: 'Signaling', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Brakes', items: [
+                        { item: 'Traveling', accepted: true, rejected: false },
+                        { item: 'Loading', accepted: true, rejected: false },
+                        { item: 'Hand Brakes', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Hydraulic System', items: [
+                        { item: 'Hydraulic System', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Structure', items: [
+                        { item: 'Structure', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Control system / Cabin', items: [
+                        { item: 'Control system / cabin', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Alarm Device', items: [
+                        { item: 'Alarm device', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Engine', items: [
+                        { item: 'Traveling', accepted: true, rejected: false },
+                        { item: 'Loading', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Other', items: [
+                        { item: 'Wire ropes', accepted: false, rejected: false }, // Unchecked
+                        { item: 'Forks', accepted: true, rejected: false },
+                        { item: 'Tires', accepted: true, rejected: false },
+                        { item: 'Supports', accepted: false, rejected: false } // Unchecked
+                    ]}
+                ],
+                equipmentConditionDuringTest: [
+                    { item: 'Brakes', accepted: true, rejected: false },
+                    { item: 'Hydraulic Circuit', accepted: true, rejected: false },
+                    { item: 'Fixing supports', accepted: true, rejected: false },
+                    { item: 'Lifting Gear', accepted: true, rejected: false }
+                ],
+                staticLoadingTests: [
+                    { boomLength: 'N/A', radius: 'N/A', testLoad: 'N/A', safetyWorkingLoad: '02.50' },
+                    { boomLength: '--', radius: '--', testLoad: '02.50', safetyWorkingLoad: '01.30' },
+                    { boomLength: '--', radius: '--', testLoad: '01.50', safetyWorkingLoad: '01.00' }
+                ],
+                conclusion: 'The crane by this condition is satisfactory for lifting loads up to 100% of the rated load table, taking into consideration the wire rope condition. The crane is due for retesting on 22/01/2026 or after any major repairs, provided that the regular maintenance had took place.',
+                validity: '6 Month from the date of Inspection',
+                inspector: 'R.D.C INSPECTOR ALEX',
+                contactTele: '01001249944',
+                contactWebsite: 'www.neat-wq.com',
+                contactEmail: 'i_bedair@hotmail.com',
+            },
+            '4433': {
+                type: 'report',
+                reportNo: '4433/2025',
+                reportDate: 'July 23, 2025',
+                endingDate: 'January 22, 2026',
+                client: 'الشركة الكابتن لتأجير المعدات',
+                testDatePlace: '23-07-2025 at Client site',
+                equipmentTested: 'Forklift',
+                equipmentType: 'TCM',
+                equipmentNo: '91P 00530',
+                capacity: '15 TON',
+                typeOfTest: 'Loading & stability test',
+                applicableRef: 'ISO 4310',
+                inspectionProc: 'Forklift\'s loading chart.',
+                visualCheck: [
+                    { category: 'General', items: [
+                        { item: 'General View', accepted: true, rejected: false },
+                        { item: 'Safety Utensils', accepted: true, rejected: false },
+                        { item: 'Hook/Forks', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Lighting', items: [
+                        { item: 'Front', accepted: true, rejected: false },
+                        { item: 'Rear', accepted: true, rejected: false },
+                        { item: 'Signaling', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Brakes', items: [
+                        { item: 'Traveling', accepted: true, rejected: false },
+                        { item: 'Loading', accepted: true, rejected: false },
+                        { item: 'Hand Brakes', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Hydraulic System', items: [
+                        { item: 'Hydraulic System', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Structure', items: [
+                        { item: 'Structure', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Control system / Cabin', items: [
+                        { item: 'Control system / cabin', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Alarm Device', items: [
+                        { item: 'Alarm device', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Engine', items: [
+                        { item: 'Traveling', accepted: true, rejected: false },
+                        { item: 'Loading', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Other', items: [
+                        { item: 'Wire ropes', accepted: false, rejected: false }, // Unchecked
+                        { item: 'Forks', accepted: true, rejected: false },
+                        { item: 'Tires', accepted: true, rejected: false },
+                        { item: 'Supports', accepted: false, rejected: false } // Unchecked
+                    ]}
+                ],
+                equipmentConditionDuringTest: [
+                    { item: 'Brakes', accepted: true, rejected: false },
+                    { item: 'Hydraulic Circuit', accepted: true, rejected: false },
+                    { item: 'Fixing supports', accepted: true, rejected: false },
+                    { item: 'Lifting Gear', accepted: true, rejected: false }
+                ],
+                staticLoadingTests: [
+                    { boomLength: 'N/A', radius: 'N/A', testLoad: 'N/A', safetyWorkingLoad: '15.00' },
+                    { boomLength: '--', radius: '--', testLoad: '02.50', safetyWorkingLoad: '03.00' },
+                    { boomLength: '--', radius: '--', testLoad: '01.50', safetyWorkingLoad: '01.50' }
+                ],
+                conclusion: 'The crane by this condition is satisfactory for lifting loads up to 100% of the rated load table, taking into consideration the wire rope condition. The crane is due for retesting on 22/01/2026 or after any major repairs, provided that the regular maintenance had took place.',
+                validity: '6 Month from the date of Inspection',
+                inspector: 'R.D.C INSPECTOR ALEX',
+                contactTele: '01001249944',
+                contactWebsite: 'www.neat-wq.com',
+                contactEmail: 'i_bedair@hotmail.com',
+            },
+            '3344': {
+                type: 'report',
+                reportNo: '3344/2025',
+                reportDate: 'July 23, 2025',
+                endingDate: 'January 22, 2026',
+                client: 'الشركة الكابتن لتأجير المعدات',
+                testDatePlace: '23-07-2025 at Client site',
+                equipmentTested: 'Forklift',
+                equipmentType: 'TCM',
+                equipmentNo: '91P 00530',
+                capacity: '11.5 TON',
+                typeOfTest: 'Loading & stability test',
+                applicableRef: 'ISO 4310',
+                inspectionProc: 'Forklift\'s loading chart.',
+                visualCheck: [
+                    { category: 'General', items: [
+                        { item: 'General View', accepted: true, rejected: false },
+                        { item: 'Safety Utensils', accepted: true, rejected: false },
+                        { item: 'Hook/Forks', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Lighting', items: [
+                        { item: 'Front', accepted: true, rejected: false },
+                        { item: 'Rear', accepted: true, rejected: false },
+                        { item: 'Signaling', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Brakes', items: [
+                        { item: 'Traveling', accepted: true, rejected: false },
+                        { item: 'Loading', accepted: true, rejected: false },
+                        { item: 'Hand Brakes', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Hydraulic System', items: [
+                        { item: 'Hydraulic System', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Structure', items: [
+                        { item: 'Structure', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Control system / Cabin', items: [
+                        { item: 'Control system / cabin', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Alarm Device', items: [
+                        { item: 'Alarm device', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Engine', items: [
+                        { item: 'Traveling', accepted: true, rejected: false },
+                        { item: 'Loading', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Other', items: [
+                        { item: 'Wire ropes', accepted: false, rejected: false }, // Unchecked
+                        { item: 'Forks', accepted: true, rejected: false },
+                        { item: 'Tires', accepted: true, rejected: false },
+                        { item: 'Supports', accepted: false, rejected: false } // Unchecked
+                    ]}
+                ],
+                equipmentConditionDuringTest: [
+                    { item: 'Brakes', accepted: true, rejected: false },
+                    { item: 'Hydraulic Circuit', accepted: true, rejected: false },
+                    { item: 'Fixing supports', accepted: true, rejected: false },
+                    { item: 'Lifting Gear', accepted: true, rejected: false }
+                ],
+                staticLoadingTests: [
+                    { boomLength: 'N/A', radius: 'N/A', testLoad: 'N/A', safetyWorkingLoad: '11.50' },
+                    { boomLength: '--', radius: '--', testLoad: '02.50', safetyWorkingLoad: '03.00' },
+                    { boomLength: '--', radius: '--', testLoad: '01.50', safetyWorkingLoad: '01.50' }
+                ],
+                conclusion: 'The crane by this condition is satisfactory for lifting loads up to 100% of the rated load table, taking into consideration the wire rope condition. The crane is due for retesting on 22/01/2026 or after any major repairs, provided that the regular maintenance had took place.',
+                validity: '6 Month from the date of Inspection',
+                inspector: 'R.D.C INSPECTOR ALEX',
+                contactTele: '01001249944',
+                contactWebsite: 'www.neat-wq.com',
+                contactEmail: 'i_bedair@hotmail.com',
+            },
+            '5825': {
+                type: 'report',
+                reportNo: '5825/2025',
+                reportDate: 'July 23, 2025',
+                endingDate: 'January 22, 2026',
+                client: 'الشركة الكابتن لتأجير المعدات',
+                testDatePlace: '23-07-2025 at Client site',
+                equipmentTested: 'Forklift',
+                equipmentType: 'TCM',
+                equipmentNo: 'FD100Z / 59000134',
+                capacity: '10 TON',
+                typeOfTest: 'Loading & stability test',
+                applicableRef: 'ISO 4310',
+                inspectionProc: 'Forklift\'s loading chart.',
+                visualCheck: [
+                    { category: 'General', items: [
+                        { item: 'General View', accepted: true, rejected: false },
+                        { item: 'Safety Utensils', accepted: true, rejected: false },
+                        { item: 'Hook/Forks', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Lighting', items: [
+                        { item: 'Front', accepted: true, rejected: false },
+                        { item: 'Rear', accepted: true, rejected: false },
+                        { item: 'Signaling', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Brakes', items: [
+                        { item: 'Traveling', accepted: true, rejected: false },
+                        { item: 'Loading', accepted: true, rejected: false },
+                        { item: 'Hand Brakes', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Hydraulic System', items: [
+                        { item: 'Hydraulic System', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Structure', items: [
+                        { item: 'Structure', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Control system / Cabin', items: [
+                        { item: 'Control system / cabin', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Alarm Device', items: [
+                        { item: 'Alarm device', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Engine', items: [
+                        { item: 'Traveling', accepted: true, rejected: false },
+                        { item: 'Loading', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Other', items: [
+                        { item: 'Wire ropes', accepted: false, rejected: false }, // Unchecked
+                        { item: 'Forks', accepted: true, rejected: false },
+                        { item: 'Tires', accepted: true, rejected: false },
+                        { item: 'Supports', accepted: false, rejected: false } // Unchecked
+                    ]}
+                ],
+                equipmentConditionDuringTest: [
+                    { item: 'Brakes', accepted: true, rejected: false },
+                    { item: 'Hydraulic Circuit', accepted: true, rejected: false },
+                    { item: 'Fixing supports', accepted: true, rejected: false },
+                    { item: 'Lifting Gear', accepted: true, rejected: false }
+                ],
+                staticLoadingTests: [
+                    { boomLength: '--', radius: '--', testLoad: 'N/A', safetyWorkingLoad: '10.00' },
+                    { boomLength: '--', radius: '--', testLoad: '02.50', safetyWorkingLoad: '03.00' },
+                    { boomLength: '--', radius: '--', testLoad: '01.50', safetyWorkingLoad: '01.50' }
+                ],
+                conclusion: 'The crane by this condition is satisfactory for lifting loads up to 100% of the rated load table, taking into consideration the wire rope condition. The crane is due for retesting on 22/01/2026 or after any major repairs, provided that the regular maintenance had took place.',
+                validity: '6 Month from the date of Inspection',
+                inspector: 'R.D.C INSPECTOR ALEX',
+                contactTele: '01001249944',
+                contactWebsite: 'www.neat-wq.com',
+                contactEmail: 'i_bedair@hotmail.com',
+            },
+            '5820': {
+                type: 'report',
+                reportNo: '5820/2025',
+                reportDate: 'July 23, 2025',
+                endingDate: 'January 22, 2026',
+                client: 'الشركة الكابتن لتأجير المعدات',
+                testDatePlace: '23-07-2025 at Client site',
+                equipmentTested: 'Forklift',
+                equipmentType: 'KOMATSU',
+                equipmentNo: 'FD70-5500241',
+                capacity: '07 TON',
+                typeOfTest: 'Loading & stability test',
+                applicableRef: 'ISO 4310',
+                inspectionProc: 'Forklift\'s loading chart.',
+                visualCheck: [
+                    { category: 'General', items: [
+                        { item: 'General View', accepted: true, rejected: false },
+                        { item: 'Safety Utensils', accepted: true, rejected: false },
+                        { item: 'Hook/Forks', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Lighting', items: [
+                        { item: 'Front', accepted: true, rejected: false },
+                        { item: 'Rear', accepted: true, rejected: false },
+                        { item: 'Signaling', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Brakes', items: [
+                        { item: 'Traveling', accepted: true, rejected: false },
+                        { item: 'Loading', accepted: true, rejected: false },
+                        { item: 'Hand Brakes', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Hydraulic System', items: [
+                        { item: 'Hydraulic System', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Structure', items: [
+                        { item: 'Structure', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Control system / Cabin', items: [
+                        { item: 'Control system / cabin', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Alarm Device', items: [
+                        { item: 'Alarm device', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Engine', items: [
+                        { item: 'Traveling', accepted: true, rejected: false },
+                        { item: 'Loading', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Other', items: [
+                        { item: 'Wire ropes', accepted: false, rejected: false }, // Unchecked
+                        { item: 'Forks', accepted: true, rejected: false },
+                        { item: 'Tires', accepted: true, rejected: false },
+                        { item: 'Supports', accepted: false, rejected: false } // Unchecked
+                    ]}
+                ],
+                equipmentConditionDuringTest: [
+                    { item: 'Brakes', accepted: true, rejected: false },
+                    { item: 'Hydraulic Circuit', accepted: true, rejected: false },
+                    { item: 'Fixing supports', accepted: true, rejected: false },
+                    { item: 'Lifting Gear', accepted: true, rejected: false }
+                ],
+                staticLoadingTests: [
+                    { boomLength: 'N/A', radius: 'N/A', testLoad: 'N/A', safetyWorkingLoad: '07.00' },
+                    { boomLength: '--', radius: '--', testLoad: '02.50', safetyWorkingLoad: '03.00' },
+                    { boomLength: '--', radius: '--', testLoad: '01.50', safetyWorkingLoad: '01.50' }
+                ],
+                conclusion: 'The crane by this condition is satisfactory for lifting loads up to 100% of the rated load table, taking into consideration the wire rope condition. The crane is due for retesting on 22/01/2026 or after any major repairs, provided that the regular maintenance had took place.',
+                validity: '6 Month from the date of Inspection',
+                inspector: 'R.D.C INSPECTOR ALEX',
+                contactTele: '01001249944',
+                contactWebsite: 'www.neat-wq.com',
+                contactEmail: 'i_bedair@hotmail.com',
+            },
+            '5823': {
+                type: 'report',
+                reportNo: '5823/2025',
+                reportDate: 'July 23, 2025',
+                endingDate: 'January 22, 2026',
+                client: 'الشركة الكابتن لتأجير المعدات',
+                testDatePlace: '23-07-2025 at Client site',
+                equipmentTested: 'Forklift',
+                equipmentType: 'TCM',
+                equipmentNo: '13K00248',
+                capacity: '03 TON',
+                typeOfTest: 'Loading & stability test',
+                applicableRef: 'ISO 4310',
+                inspectionProc: 'Forklift\'s loading chart.',
+                visualCheck: [
+                    { category: 'General', items: [
+                        { item: 'General View', accepted: true, rejected: false },
+                        { item: 'Safety Utensils', accepted: true, rejected: false },
+                        { item: 'Hook/Forks', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Lighting', items: [
+                        { item: 'Front', accepted: true, rejected: false },
+                        { item: 'Rear', accepted: true, rejected: false },
+                        { item: 'Signaling', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Brakes', items: [
+                        { item: 'Traveling', accepted: true, rejected: false },
+                        { item: 'Loading', accepted: true, rejected: false },
+                        { item: 'Hand Brakes', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Hydraulic System', items: [
+                        { item: 'Hydraulic System', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Structure', items: [
+                        { item: 'Structure', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Control system / Cabin', items: [
+                        { item: 'Control system / cabin', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Alarm Device', items: [
+                        { item: 'Alarm device', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Engine', items: [
+                        { item: 'Traveling', accepted: true, rejected: false },
+                        { item: 'Loading', accepted: true, rejected: false }
+                    ]},
+                    { category: 'Other', items: [
+                        { item: 'Wire ropes', accepted: false, rejected: false }, // Unchecked
+                        { item: 'Forks', accepted: true, rejected: false },
+                        { item: 'Tires', accepted: true, rejected: false },
+                        { item: 'Supports', accepted: false, rejected: false } // Unchecked
+                    ]}
+                ],
+                equipmentConditionDuringTest: [
+                    { item: 'Brakes', accepted: true, rejected: false },
+                    { item: 'Hydraulic Circuit', accepted: true, rejected: false },
+                    { item: 'Fixing supports', accepted: true, rejected: false },
+                    { item: 'Lifting Gear', accepted: true, rejected: false }
+                ],
+                staticLoadingTests: [
+                    { boomLength: '00.00', radius: '00.00', testLoad: 'N/A', safetyWorkingLoad: '03.00' },
+                    { boomLength: '00.00', radius: '00.50', testLoad: '03.00', safetyWorkingLoad: '02.50' },
+                    { boomLength: '00.00', radius: '01.00', testLoad: '02.00', safetyWorkingLoad: '02.00' }
+                ],
+                conclusion: 'The crane by this condition is satisfactory for lifting loads up to 100% of the rated load table, taking into consideration the wire rope condition. The crane is due for retesting on 22/01/2026 or after any major repairs, provided that the regular maintenance had took place.',
+                validity: '6 Month from the date of Inspection',
+                inspector: 'R.D.C INSPECTOR ALEX',
+                contactTele: '01001249944',
+                contactWebsite: 'www.neat-wq.com',
+                contactEmail: 'i_bedair@hotmail.com',
             }
         };
 
         // Get DOM elements for inspection report (now primary content)
-        const contentShowcase = document.getElementById('contentShowcase'); // Renamed from inspectionReportShowcase
+        const contentShowcase = document.getElementById('contentShowcase');
         const reportNoDisplay = document.getElementById('reportNoDisplay');
         const reportDate = document.getElementById('reportDate');
+        const endingDate = document.getElementById('endingDate');
         const reportClient = document.getElementById('reportClient');
         const reportTestDatePlace = document.getElementById('reportTestDatePlace');
         const reportEquipmentTested = document.getElementById('reportEquipmentTested');
@@ -307,21 +877,51 @@ Testing & Certification
         const reportApplicableRef = document.getElementById('reportApplicableRef');
         const reportInspectionProc = document.getElementById('reportInspectionProc');
         const visualChecksContainer = document.getElementById('visualChecksContainer');
-        const staticLoadingTestsBody = document.getElementById('staticLoadingTestsBody'); // New element
-        const reportValidity = document.getElementById('reportValidity'); // New element
-        const reportConclusion = document.getElementById('reportConclusion'); // New element
-        const reportInspector = document.getElementById('reportInspector'); // New element
-
-
+        const staticLoadingTestsBody = document.getElementById('staticLoadingTestsBody');
+        const equipmentConditionContainer = document.getElementById('equipmentConditionContainer'); // Re-added element
+        const reportValidity = document.getElementById('reportValidity');
+        const reportConclusion = document.getElementById('reportConclusion');
+        const reportInspector = document.getElementById('reportInspector');
         const reportContactTele = document.getElementById('reportContactTele');
         const reportContactWebsite = document.getElementById('reportContactWebsite');
         const reportContactEmail = document.getElementById('reportContactEmail');
-        // const reportFileLink = document.getElementById('reportFileLink'); // This element was removed in the HTML
 
         // Common elements
         const contentIdInput = document.getElementById('contentIdInput');
         const showContentBtn = document.getElementById('showContentBtn');
         const initialMessage = document.getElementById('initialMessage');
+
+        // Function to populate a check section (visual or equipment condition)
+        function populateCheckSection(container, checks) {
+            container.innerHTML = ''; // Clear previous
+            if (!checks || checks.length === 0) return; // Handle empty checks
+
+            checks.forEach(category => {
+                // Add category header
+                const categoryHeaderDiv = document.createElement('div');
+                categoryHeaderDiv.className = 'col-span-3 md:col-span-3 bg-gray-200 text-gray-800 font-semibold p-2 mt-2 rounded-md';
+                categoryHeaderDiv.textContent = category.category;
+                container.appendChild(categoryHeaderDiv);
+
+                // Add items within the category
+                category.items.forEach((check, index) => {
+                    const checkItemDiv = document.createElement('div');
+                    checkItemDiv.className = 'grid grid-cols-3 items-center gap-2 py-2 border-b border-gray-200 last:border-b-0 px-2';
+                    checkItemDiv.innerHTML = `
+                        <div class="col-span-1 text-gray-700 font-normal text-sm">${check.item}</div>
+                        <div class="flex items-center justify-center space-x-2">
+                            <input type="checkbox" id="accepted-${category.category.replace(/\s/g, '')}-${check.item.replace(/\s/g, '')}-${index}" class="disabled-checkbox" ${check.accepted ? 'checked' : ''} disabled>
+                            <label for="accepted-${category.category.replace(/\s/g, '')}-${check.item.replace(/\s/g, '')}-${index}" class="text-gray-600 text-sm sr-only">Accepted</label>
+                        </div>
+                        <div class="flex items-center justify-center space-x-2">
+                            <input type="checkbox" id="rejected-${category.category.replace(/\s/g, '')}-${check.item.replace(/\s/g, '')}-${index}" class="disabled-checkbox" ${check.rejected ? 'checked' : ''} disabled>
+                            <label for="rejected-${category.category.replace(/\s/g, '')}-${check.item.replace(/\s/g, '')}-${index}" class="text-gray-600 text-sm sr-only">Rejected</label>
+                        </div>
+                    `;
+                    container.appendChild(checkItemDiv);
+                });
+            });
+        }
 
         // Function to update the display based on the ID
         function updateContentDisplay(id) {
@@ -335,6 +935,7 @@ Testing & Certification
                 contentShowcase.classList.remove('hidden');
                 reportNoDisplay.textContent = content.reportNo;
                 reportDate.value = content.reportDate || 'N/A';
+                endingDate.value = content.endingDate || 'N/A';
                 reportClient.value = content.client || 'N/A';
                 reportTestDatePlace.value = content.testDatePlace || 'N/A';
                 reportEquipmentTested.value = content.equipmentTested || 'N/A';
@@ -345,38 +946,11 @@ Testing & Certification
                 reportApplicableRef.value = content.applicableRef || 'N/A';
                 reportInspectionProc.value = content.inspectionProc || 'N/A';
 
-                // Clear previous visual checks
-                visualChecksContainer.innerHTML = '';
-                // Populate visual checks by category
-                content.visualCheck.forEach(category => {
-                    // Add category header
-                    const categoryHeaderDiv = document.createElement('div');
-                    categoryHeaderDiv.className = 'col-span-3 md:col-span-3 bg-gray-200 text-gray-800 font-semibold p-2 mt-2 rounded-md';
-                    categoryHeaderDiv.textContent = category.category;
-                    visualChecksContainer.appendChild(categoryHeaderDiv);
+                // Populate Visual Checks
+                populateCheckSection(visualChecksContainer, content.visualCheck || []);
 
-                    // Add items within the category
-                    category.items.forEach((check, index) => {
-                        const checkItemDiv = document.createElement('div');
-                        // Adjusted grid-cols to 3 as remarks are removed
-                        checkItemDiv.className = 'grid grid-cols-3 items-center gap-2 py-2 border-b border-gray-200 last:border-b-0 px-2';
-                        checkItemDiv.innerHTML = `
-                            <div class="col-span-1 text-gray-700 font-normal text-sm">${check.item}</div>
-                            <div class="flex items-center justify-center space-x-2">
-                                <input type="checkbox" id="accepted-${category.category}-${index}" class="disabled-checkbox" ${check.accepted ? 'checked' : ''} disabled>
-                                <label for="accepted-${category.category}-${index}" class="text-gray-600 text-sm sr-only">Accepted</label>
-                            </div>
-                            <div class="flex items-center justify-center space-x-2">
-                                <input type="checkbox" id="rejected-${category.category}-${index}" class="disabled-checkbox" ${check.rejected ? 'checked' : ''} disabled>
-                                <label for="rejected-${category.category}-${index}" class="text-gray-600 text-sm sr-only">Rejected</label>
-                            </div>
-                        `;
-                        visualChecksContainer.appendChild(checkItemDiv);
-                    });
-                });
-
-                // Populate static loading tests
-                staticLoadingTestsBody.innerHTML = ''; // Clear previous
+                // Populate Static Loading Tests
+                staticLoadingTestsBody.innerHTML = '';
                 if (content.staticLoadingTests) {
                     content.staticLoadingTests.forEach(test => {
                         const row = document.createElement('tr');
@@ -391,6 +965,9 @@ Testing & Certification
                     });
                 }
 
+                // Populate Equipment Condition During Test
+                populateCheckSection(equipmentConditionContainer, [{ category: 'Equipment Condition During Test', items: content.equipmentConditionDuringTest || [] }]);
+
                 reportValidity.value = content.validity || 'N/A';
                 reportConclusion.value = content.conclusion || 'N/A';
                 reportInspector.value = content.inspector || 'N/A';
@@ -398,7 +975,6 @@ Testing & Certification
                 reportContactTele.value = content.contactTele || 'N/A';
                 reportContactWebsite.value = content.contactWebsite || 'N/A';
                 reportContactEmail.value = content.contactEmail || 'N/A';
-
 
             } else {
                 // If ID not found or not a report type, show initial message
